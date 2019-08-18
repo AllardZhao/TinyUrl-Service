@@ -25,6 +25,7 @@
 CHARS=“abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789”
         对每个长网址从字符集里面生成一个不超过7位长度的一个短网址token  
  ① md5摘要算法：接收任意长度的字节然后生成一个定长的字符，经常用在下载文件的时候会与md5校验值用来检查文件是不是修改了。
+ ···
 >>> import hashlib
 >>> url = 'http://mirrors.163.com/.help/CentOS7-Base-163.repo'
 >>> hashlib.md5(url.encode())    # 对url使用摘要算法得到的值
@@ -33,6 +34,7 @@ CHARS=“abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789”
 '60dc55352afeb63b4d91a75c9c4ff287'
 >>> len(hashlib.md5(url.encode()).hexdigest())
 32                                    # 是一个定长的32位字符串
+···
 因为我们需要一个不超过7位的字符串而md5摘要算法是32位的。可能会想到截断只取前7个字符。但是有个问题可能会有一定概率的冲突。一旦有冲突就需要在插入时候去数据库检查一下是不是有冲突。实际上这样在高并发的插入场景下是特别不友好的。
   	② 把对应的每个ID给它生成一个不重复的短网址token。
 字符集CHARS特点：从小a到小z，大A到大Z，0到9，一共25+26+10=62个。
