@@ -78,7 +78,7 @@ print(mybin(10))     # 输出结果：1010
 CHARS="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 def encode(num):
     if num == 0:
-        return CHARS[0]
+        return 0
     res = []
     while num:
         num, rem = divmod(num, len(CHARS))
